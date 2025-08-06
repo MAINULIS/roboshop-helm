@@ -1,15 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
-  {{- template "app.metadata" . }}
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+  {{ include "app.labels" . | nindent 4 }}
+
 spec:
   replicas: 1
   selector:
     matchLabels:
-  {{ include "app.labels" . | indent 6 }}
+  {{ include "app.labels" . | nindent 6 }}
 template:
   metadata:
     labels:
-  {{ include "app.labels" . | indent 8 }}
+  {{ include "app.labels" . | nindent 8 }}
 spec:
   containers:
     - name: {{ .Values.appName }}
