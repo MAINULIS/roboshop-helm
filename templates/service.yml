@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
+metadata: # Correct indentation
   {{- template "app.metadata" . }}
 spec:
   type: {{ .Values.service.type }}
   selector:
-{{ include "app.labels" . | indent 4 }}
-ports:
-  - port: {{ .Values.service.port }}
-    targetPort: {{ .Values.service.port }}
+    {{- include "app.labels" . | nindent 4 }} # Use nindent for proper indentation and newlines
+  ports: # Correct indentation
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
