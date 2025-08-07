@@ -3,5 +3,5 @@ kind: ConfigMap
   {{- template "app.metadata" . }}
 data:
   {{- range $key, $value := .Values.configMapData }}
-  {{ $key }}: {{ $value | quote }}
-  {{- end }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
